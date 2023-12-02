@@ -1,5 +1,6 @@
 import 'package:projeto_coleta_seletiva/Telas/Login.dart';
 import 'package:projeto_coleta_seletiva/Telas/Menu.dart';
+import 'package:projeto_coleta_seletiva/ChatBot/ChatBot.dart';
 
 import 'package:flutter/material.dart';
 
@@ -45,17 +46,17 @@ class _MenuState extends State<Menu> {
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green),
                 child: Text('AGENDAMENTO'),
-              ),
+              ),*/
               ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => Chatbot()),
+                    MaterialPageRoute(builder: (context) => ChatBot()),
                   );
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green),
                 child: Text('CHAT DÚVIDAS'),
-              ),*/
+              ),
               Container(
                 height: 100,
                 alignment: Alignment.center,
