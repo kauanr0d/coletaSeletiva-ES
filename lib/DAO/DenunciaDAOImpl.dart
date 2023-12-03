@@ -12,7 +12,7 @@ class DenunciaDAOImpl implements DenunciaDAO {
     var sql;
     _db = await Conexao.getConexao();
     sql = "select * from denuncia where id_denuncia = ?";
-    _db!.rawQuery(sql,[denuncia.idDenuncia]);
+    _db!.rawQuery(sql, [denuncia.idDenuncia]);
     _db!.close();
     throw UnimplementedError();
   }
@@ -27,6 +27,7 @@ class DenunciaDAOImpl implements DenunciaDAO {
     throw UnimplementedError();
   }
 
+  //TODO: adicionar verificação se já existe uma denuncia com este ID antes de adicionar
   @override
   salvarDenuncia(Denuncia denuncia, Usuario usuarioDenunciante) async {
     var sql;
@@ -35,7 +36,8 @@ class DenunciaDAOImpl implements DenunciaDAO {
         "INSERT INTO denuncia (id_usuario,id_tipo_denuncia,CEP,endereco,data_denuncia,descricao) values(?,?,?,?,?,?)";
     await _db!.rawInsert(sql, [
       usuarioDenunciante.idUsuario,
-      denuncia.tipoDenuncia,
+      denuncia
+          .tipoDenuncia, //Isso aqui acho que ta errado, a tabela denuncia deveria receber ID do tipo
       denuncia.enderecoDenuncia.cep,
       denuncia.enderecoDenuncia,
       denuncia.dataFormatadaSQL(),
@@ -44,7 +46,6 @@ class DenunciaDAOImpl implements DenunciaDAO {
     _db!.close();
     throw UnimplementedError();
   }
-  listarDenuncias() async{
 
-  }
+  listarDenuncias() async {}
 }
