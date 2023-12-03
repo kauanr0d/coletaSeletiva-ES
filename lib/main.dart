@@ -7,6 +7,26 @@ import 'package:projeto_coleta_seletiva/Telas/Login.dart';
 import 'Models/Endereco.dart';
 
 void main() {
+<<<<<<< HEAD
+=======
+  /*Endereco enderecoUsuario = Endereco(
+    "Bairro Exemplo",
+    "Rua Exemplo",
+    123,
+    "CEP Exemplo",
+  );
+  Usuario novoUsuario = Usuario.semDenunciasEAgendamentos(
+    "cucabeludp",
+    "aaaa",
+    "6666666666",
+    "(11) 3455-4321",
+    enderecoUsuario,
+    "usuario@aa.com",
+  );
+  UsuarioDAOImpl usuarioDAOImpl = UsuarioDAOImpl();
+  usuarioDAOImpl.salvarUsuario(novoUsuario);*/
+
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
   runApp(MaterialApp(home: home()));
 }
 

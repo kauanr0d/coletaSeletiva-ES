@@ -1,4 +1,7 @@
+<<<<<<< HEAD
 import 'package:projeto_coleta_seletiva/DAO/UsuarioDAOImpl.dart';
+=======
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
 import 'package:projeto_coleta_seletiva/Models/Endereco.dart';
 import 'package:projeto_coleta_seletiva/Models/Usuario.dart';
 import 'package:projeto_coleta_seletiva/Telas/Menu.dart';
@@ -74,7 +77,11 @@ class Login extends StatelessWidget {
                 // Navega para a página de login quando o botão é pressionado
                 // Vai precisar pegar o id do usuario e enviar para a classe menu
                 //Modificar para que se o LOGIN esta errado, aparece texto de erro e usuario tenta de novo
+<<<<<<< HEAD
                 _verificarLogin("novousuario@email.com", "Senha123", context);
+=======
+                _verificarLogin("Emai", "Senha", context);
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.green), // Altere para a cor desejada
@@ -101,8 +108,13 @@ class Login extends StatelessWidget {
   }
 
   //Metodo de verificar o login do usuario, comparando o email e a senha com o banco de dados
+<<<<<<< HEAD
   _verificarLogin(String email, String senha, BuildContext context) async {
     /* //User de teste
+=======
+  _verificarLogin(String email, String senha, BuildContext context) {
+    //User de teste
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
     Endereco endereco = Endereco("Bairro Teste", "Rua Teste", 1, "CEP");
     Usuario usuario = Usuario.semDenunciasEAgendamentos(
         "Pedro", "senha_pedro", "CPF", "1234-1234", endereco, "@Email");
@@ -111,6 +123,7 @@ class Login extends StatelessWidget {
     Navigator.push(
       context,
       MaterialPageRoute(builder: (context) => Menu(usuario: usuario)),
+<<<<<<< HEAD
     );*/
     UsuarioDAOImpl usuarioDAO = UsuarioDAOImpl();
     Usuario? usuario = await usuarioDAO.login(email, senha);
@@ -131,5 +144,8 @@ class Login extends StatelessWidget {
         ),
       );
     }
+=======
+    );
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
   }
 }

@@ -6,6 +6,7 @@ import 'package:projeto_coleta_seletiva/Interfaces/UsuarioDAO.dart';
 class UsuarioDAOImpl implements UsuarioDAO {
   static Database? _db;
   UsuarioDAOImpl();
+<<<<<<< HEAD
 
   @override
   Future<List<Usuario>> buscarUsuario(Usuario usuario) async {
@@ -30,6 +31,13 @@ class UsuarioDAOImpl implements UsuarioDAO {
     }
   }
 
+=======
+  @override
+  Future<List<Usuario>> buscarUsuario(Usuario usuario) {
+    throw UnimplementedError();
+  }
+
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
   @override
   remover(Usuario usuario) async {
     var sql;
@@ -54,17 +62,26 @@ class UsuarioDAOImpl implements UsuarioDAO {
     var sql;
     _db = await Conexao.getConexao();
     sql =
+<<<<<<< HEAD
         "INSERT INTO usuario(nome,senha,cpf,telefone,email,CEP,bairro,rua,numero) VALUES(?,?,?,?,?,?,?,?,?,?);";
+=======
+        "INSERT INTO usuario(nome,senha,cpf,telefone,email,CEP,endereco) VALUES(?,?,?,?,?,?,?);";
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
     await _db!.rawInsert(sql, [
       usuario.nome,
       usuario.senha,
       usuario.cpf,
       usuario.telefone,
       usuario.email,
+<<<<<<< HEAD
       usuario.cep,
       usuario.bairro,
       usuario.rua,
       usuario.numero
+=======
+      usuario.enderecoUsuario.cep,
+      usuario.enderecoUsuario.cep
+>>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
     ]);
     throw UnimplementedError();
   }
