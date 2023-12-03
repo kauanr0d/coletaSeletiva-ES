@@ -12,11 +12,7 @@ import 'package:flutter/material.dart';
 import 'package:projeto_coleta_seletiva/Models/Endereco.dart';
 import 'package:projeto_coleta_seletiva/Telas/Login.dart';
 
-<<<<<<< HEAD
 /*class TelaDenuncia extends StatefulWidget {
-=======
-class TelaDenuncia extends StatefulWidget {
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
   final Usuario usuario;
 
   TelaDenuncia(
@@ -55,11 +51,7 @@ class _TelaDenunciaState extends State<TelaDenuncia> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
-<<<<<<< HEAD
                 usuario.nome!,
-=======
-                usuario.nome,
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
                 style: TextStyle(
                   fontSize: 24,
                   fontWeight: FontWeight.bold,
@@ -109,8 +101,4 @@ class _TelaDenunciaState extends State<TelaDenuncia> {
     // Chame o método salvarDenuncia da instância de DenunciaDAO
     //denunciaDAO.salvarDenuncia(denuncia, usuario);
   }
-<<<<<<< HEAD
 }*/
-=======
-}
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f

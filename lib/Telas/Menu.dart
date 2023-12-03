@@ -38,11 +38,7 @@ class _MenuState extends State<Menu> {
                 height: 250, // altura
                 child: Image.asset('assets/seletinhoHomePage.png'),
               ),
-<<<<<<< HEAD
               /*ElevatedButton(
-=======
-              ElevatedButton(
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -52,20 +48,12 @@ class _MenuState extends State<Menu> {
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green),
                 child: Text('DENÚNCIAS'),
-<<<<<<< HEAD
               ),*/
-=======
-              ),
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
               /*ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
-<<<<<<< HEAD
                     MaterialPageRoute(builder: (context) => Agendamento()),
-=======
-                    MaterialPageRoute(builder: (context) => Agendamento(usuario: usuario)),
->>>>>>> 0492d52a8ff0c32a1a0445e174d75ccabfcebc9f
                   );
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green),
