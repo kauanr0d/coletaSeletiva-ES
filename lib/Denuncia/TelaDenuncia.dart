@@ -14,7 +14,7 @@ import 'package:projeto_coleta_seletiva/Models/Endereco.dart';
 import 'package:projeto_coleta_seletiva/Telas/Login.dart';
 import 'package:sqflite/utils/utils.dart';
 
-class TelaDenuncia extends StatefulWidget {
+/*class TelaDenuncia extends StatefulWidget {
   final Usuario usuario;
 
   TelaDenuncia(
@@ -308,34 +308,4 @@ class _TelaDenunciaState extends State<TelaDenuncia> {
     denunciaDAO.salvarDenuncia(denuncia, usuario);
     Navigator.pop(context);
   }
-
-  Future popUp() => showDialog(
-        context: context,
-        builder: (context) => AlertDialog(
-          backgroundColor: Colors.green,
-          title: const Text(
-            "ERRO",
-            style: TextStyle(color: Colors.white),
-          ),
-          content: const Text(
-            "Dados não suficientes para localizar.",
-            style: TextStyle(color: Colors.white, fontSize: 20),
-          ),
-          actions: [
-            TextButton(
-              onPressed: () {
-                Navigator.of(context).pop();
-              },
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
-              ),
-              child: const Text(
-                "OK",
-                style:
-                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
-              ),
-            )
-          ],
-        ),
-      );
 }

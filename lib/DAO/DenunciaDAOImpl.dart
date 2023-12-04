@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:projeto_coleta_seletiva/Models/Denuncia.dart';
 import 'package:projeto_coleta_seletiva/ConexaoBancoDeDados/Conexao.dart';
 import 'package:projeto_coleta_seletiva/Interfaces/DenunciaDAO.dart';
-
+/*
 class DenunciaDAOImpl implements DenunciaDAO {
   static Database? _db;
 
@@ -48,4 +48,4 @@ class DenunciaDAOImpl implements DenunciaDAO {
   }
 
   listarDenuncias() async {}
-}
+}*/

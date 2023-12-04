@@ -1,3 +1,5 @@
+import 'package:projeto_coleta_seletiva/Controller/LoginController.dart';
+import 'package:projeto_coleta_seletiva/DAO/UsuarioDAOImpl.dart';
 import 'package:projeto_coleta_seletiva/Models/Endereco.dart';
 import 'package:projeto_coleta_seletiva/Models/Usuario.dart';
 import 'package:projeto_coleta_seletiva/Telas/Menu.dart';
@@ -6,6 +8,8 @@ import 'package:projeto_coleta_seletiva/Telas/Menu.dart';
 import 'package:flutter/material.dart';
 
 class Login extends StatelessWidget {
+  final TextEditingController emailController = TextEditingController();
+  final TextEditingController senhaController = TextEditingController();
   Login({super.key});
 
   @override
@@ -27,6 +31,7 @@ class Login extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TextFormField(
+              controller: emailController,
               keyboardType: TextInputType.emailAddress,
               decoration: InputDecoration(
                   labelText: "E-mail",
@@ -41,6 +46,7 @@ class Login extends StatelessWidget {
             ),
             SizedBox(height: 10),
             TextFormField(
+              controller: senhaController,
               keyboardType: TextInputType.text,
               obscureText: true,
               decoration: InputDecoration(
@@ -73,7 +79,10 @@ class Login extends StatelessWidget {
                 // Navega para a página de login quando o botão é pressionado
                 // Vai precisar pegar o id do usuario e enviar para a classe menu
                 //Modificar para que se o LOGIN esta errado, aparece texto de erro e usuario tenta de novo
-                _verificarLogin("Emai", "Senha", context);
+                String email = emailController.text;
+                String senha = senhaController.text;
+
+                _verificarLogin(email, senha, context);
               },
               style: ElevatedButton.styleFrom(
                   primary: Colors.green), // Altere para a cor desejada
@@ -100,16 +109,22 @@ class Login extends StatelessWidget {
   }
 
   //Metodo de verificar o login do usuario, comparando o email e a senha com o banco de dados
-  _verificarLogin(String email, String senha, BuildContext context) {
-    //User de teste
-    Endereco endereco = Endereco("Bairro Teste", "Rua Teste", 1, "CEP");
-    Usuario usuario = Usuario.semDenunciasEAgendamentos(
-        "Pedro", "senha_pedro", "CPF", "1234-1234", endereco, "@Email");
+  _verificarLogin(String email, String senha, BuildContext context) async {
+    Usuario? usuario = await LoginController().realizarLogin(email, senha);
 
-    //Chamar o MENU apenas se o login esta certo
-    Navigator.push(
-      context,
-      MaterialPageRoute(builder: (context) => Menu(usuario: usuario)),
-    );
+    if (usuario != null) {
+      // Login bem-sucedido
+      Navigator.push(
+        context,
+        MaterialPageRoute(builder: (context) => Menu(usuario: usuario)),
+      );
+    } else {
+      // Exiba uma mensagem de erro
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          content: Text('E-mail ou senha incorretos'),
+        ),
+      );
+    }
   }
 }

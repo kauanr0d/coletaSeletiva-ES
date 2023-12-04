@@ -6,9 +6,28 @@ import 'package:projeto_coleta_seletiva/Interfaces/UsuarioDAO.dart';
 class UsuarioDAOImpl implements UsuarioDAO {
   static Database? _db;
   UsuarioDAOImpl();
+
   @override
-  Future<List<Usuario>> buscarUsuario(Usuario usuario) {
+  Future<List<Usuario>> buscarUsuario(Usuario usuario) async {
+    _db = await Conexao.getConexao();
+    var sql = "SELECT * FROM usuario WHERE email = ? and senha = ?";
+    await _db!.rawQuery(sql);
     throw UnimplementedError();
+  }
+
+  Future<Usuario?> login(String email, String senha) async {
+    _db = await Conexao.getConexao();
+
+    var sql = "SELECT * FROM usuario WHERE email = ? and senha = ? LIMIT 1";
+
+    List<Map<String, dynamic>> result =
+        await _db!.rawQuery(sql, [email, senha]);
+
+    if (result.isEmpty != true) {
+      return Usuario.fromMap(result.first);
+    } else {
+      return null;
+    }
   }
 
   @override
@@ -35,15 +54,17 @@ class UsuarioDAOImpl implements UsuarioDAO {
     var sql;
     _db = await Conexao.getConexao();
     sql =
-        "INSERT INTO usuario(nome,senha,cpf,telefone,email,CEP,endereco) VALUES(?,?,?,?,?,?,?);";
+        "INSERT INTO usuario(nome,senha,cpf,telefone,email,CEP,bairro,rua,numero) VALUES(?,?,?,?,?,?,?,?,?,?);";
     await _db!.rawInsert(sql, [
       usuario.nome,
       usuario.senha,
       usuario.cpf,
       usuario.telefone,
       usuario.email,
-      usuario.enderecoUsuario.cep,
-      usuario.enderecoUsuario.cep
+      usuario.cep,
+      usuario.bairro,
+      usuario.rua,
+      usuario.numero
     ]);
     throw UnimplementedError();
   }
