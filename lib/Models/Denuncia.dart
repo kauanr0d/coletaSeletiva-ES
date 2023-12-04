@@ -34,4 +34,54 @@ class Denuncia {
   String? get cep => _cep;
   String? get rua => _rua;
   String? get numero => _numero;
+
+  Map<String, dynamic> toMap() {
+    return {
+      'idDenuncia': _idDenuncia,
+      'tipoDenuncia':
+          _tipoDenuncia?.toString(), // Converte o enum para uma string
+      'descricaoDenuncia': _descricaoDenuncia,
+      'cep': _cep,
+      'bairro': _bairro,
+      'rua': _rua,
+      'numero': _numero,
+      'dataDenuncia': _dataDenuncia
+          ?.toIso8601String(), // Converte a data para uma string no formato ISO 8601
+    };
+  }
+
+  factory Denuncia.fromMap(Map<String, dynamic> map) {
+    return Denuncia(
+      TipoDenuncia.values.firstWhere(
+        (e) => e.toString() == 'TipoDenuncia.' + map['tipoDenuncia'],
+        orElse: () => TipoDenuncia.outros,
+      ),
+      map['descricaoDenuncia'],
+      map['idDenuncia'],
+      DateTime.tryParse(map['dataDenuncia']),
+      bairro: map['bairro'],
+      cep: map['cep'],
+      rua: map['rua'],
+      numero: map['numero'],
+    );
+  }
+
+  TipoDenuncia getTipoDenunciaFromString(String? valor) {
+    if (valor == null) {
+      return TipoDenuncia.outros;
+    }
+
+    switch (valor) {
+      case 'Descarte Irregular':
+        return TipoDenuncia.DescarteIrregular;
+      case 'Falta De Coleta':
+        return TipoDenuncia.FaltaDeColeta;
+      case 'Obstrucao De Patrimonio':
+        return TipoDenuncia.ObstrucaoDePatrimonio;
+      case 'outros':
+        return TipoDenuncia.outros;
+      default:
+        return TipoDenuncia.outros;
+    }
+  }
 }

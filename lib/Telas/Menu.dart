@@ -38,7 +38,7 @@ class _MenuState extends State<Menu> {
                 height: 250, // altura
                 child: Image.asset('assets/seletinhoHomePage.png'),
               ),
-              /*ElevatedButton(
+              ElevatedButton(
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -48,7 +48,7 @@ class _MenuState extends State<Menu> {
                 },
                 style: ElevatedButton.styleFrom(primary: Colors.green),
                 child: Text('DENÚNCIAS'),
-              ),*/
+              ),
               /*ElevatedButton(
                 onPressed: () {
                   Navigator.push(

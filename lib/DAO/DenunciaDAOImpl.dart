@@ -3,7 +3,7 @@ import 'package:sqflite/sqflite.dart';
 import 'package:projeto_coleta_seletiva/Models/Denuncia.dart';
 import 'package:projeto_coleta_seletiva/ConexaoBancoDeDados/Conexao.dart';
 import 'package:projeto_coleta_seletiva/Interfaces/DenunciaDAO.dart';
-/*
+
 class DenunciaDAOImpl implements DenunciaDAO {
   static Database? _db;
 
@@ -27,25 +27,30 @@ class DenunciaDAOImpl implements DenunciaDAO {
     throw UnimplementedError();
   }
 
-  //TODO: adicionar verificação se já existe uma denuncia com este ID antes de adicionar
   @override
   salvarDenuncia(Denuncia denuncia, Usuario usuarioDenunciante) async {
     var sql;
     _db = await Conexao.getConexao();
-    sql =
-        "INSERT INTO denuncia (id_usuario,id_tipo_denuncia,CEP,endereco,data_denuncia,descricao) values(?,?,?,?,?,?)";
+    if (denuncia.cep != null) {
+      sql =
+          "INSERT INTO denuncia (id_usuario, tipo_denuncia, descricao, CEP, bairro, rua, numero, data_denuncia)VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+    } else {
+      sql =
+          "INSERT INTO denuncia (id_usuario, tipo_denuncia, descricao, CEP, bairro, rua, numero, data_denuncia)VALUES (?, ?, ?, ?, ?, ?, ?)";
+    }
     await _db!.rawInsert(sql, [
       usuarioDenunciante.idUsuario,
-      denuncia
-          .tipoDenuncia, //Isso aqui acho que ta errado, a tabela denuncia deveria receber ID do tipo
-      denuncia.enderecoDenuncia.cep,
-      denuncia.enderecoDenuncia,
-      denuncia.dataFormatadaSQL(),
-      denuncia.descricaoDenuncia
+      denuncia.tipoDenuncia,
+      denuncia.descricaoDenuncia,
+      denuncia.cep,
+      denuncia.bairro,
+      denuncia.rua,
+      denuncia.numero,
+      denuncia.dataDenuncia
     ]);
     _db!.close();
     throw UnimplementedError();
   }
 
   listarDenuncias() async {}
-}*/
+}
