@@ -4,17 +4,10 @@ import 'package:projeto_coleta_seletiva/DAO/DenunciaDAOImpl.dart';
 import 'package:projeto_coleta_seletiva/Denuncia/CepInputFormatter.dart';
 import 'package:projeto_coleta_seletiva/Interfaces/DenunciaDAO.dart';
 import 'package:projeto_coleta_seletiva/Models/Usuario.dart';
-
-import 'package:projeto_coleta_seletiva/Models/Denuncia.dart';
-
-import 'package:projeto_coleta_seletiva/ChatBot/ChatBot.dart';
 import 'package:projeto_coleta_seletiva/Models/Enums/TipoDenuncia.dart';
-import 'package:flutter/material.dart';
 import 'package:projeto_coleta_seletiva/Models/Endereco.dart';
-import 'package:projeto_coleta_seletiva/Telas/Login.dart';
-import 'package:sqflite/utils/utils.dart';
 
-/*class TelaDenuncia extends StatefulWidget {
+class TelaDenuncia extends StatefulWidget {
   final Usuario usuario;
 
   TelaDenuncia(
@@ -27,7 +20,9 @@ import 'package:sqflite/utils/utils.dart';
 
 class _TelaDenunciaState extends State<TelaDenuncia> {
   // Cria uma instância da implementação da interface DenunciaDAO
-  final DenunciaDAO denunciaDAO = DenunciaDAOImpl();
+  //TODO: REMOVER COMENTARIO
+  //final DenunciaDAO denunciaDAO = DenunciaDAOImpl();
+
   final Usuario usuario;
   TipoDenuncia _selectedTipoDenuncia = TipoDenuncia.DescarteIrregular;
   String descricaoDenuncia = "";
@@ -300,12 +295,42 @@ class _TelaDenunciaState extends State<TelaDenuncia> {
       return;
     }
 
+    //TODO: REMOVER COMENTARIO
     //Criar instâncias de Denuncia e obter os dados do Usuario
-    Denuncia denuncia = Denuncia.denunciaSemId(
-        _selectedTipoDenuncia, descricaoDenuncia, endereco, DateTime.now());
+    //Denuncia denuncia = Denuncia.denunciaSemId(_selectedTipoDenuncia, descricaoDenuncia, endereco, DateTime.now());
 
     //Chamar o método salvarDenuncia da instância de DenunciaDAO
-    denunciaDAO.salvarDenuncia(denuncia, usuario);
+    //denunciaDAO.salvarDenuncia(denuncia, usuario);
     Navigator.pop(context);
   }
+
+  Future popUp() => showDialog(
+        context: context,
+        builder: (context) => AlertDialog(
+          backgroundColor: Colors.green,
+          title: const Text(
+            "ERRO",
+            style: TextStyle(color: Colors.white),
+          ),
+          content: const Text(
+            "Dados não suficientes para localizar.",
+            style: TextStyle(color: Colors.white, fontSize: 20),
+          ),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
+              ),
+              child: const Text(
+                "OK",
+                style:
+                    TextStyle(color: Colors.green, fontWeight: FontWeight.bold),
+              ),
+            )
+          ],
+        ),
+      );
 }
