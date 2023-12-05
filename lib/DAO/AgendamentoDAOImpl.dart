@@ -13,7 +13,7 @@ class AgendamentoDAOImpl implements AgendamentoDAO {
     var sql;
     _db = await Conexao.getConexao();
     sql = "select * from agendamento where id_agendamento = ?";
-    _db!.rawQuery(sql,[agendamento.idAgendamento]);
+    _db!.rawQuery(sql, [agendamento.idAgendamento]);
     _db!.close();
     throw UnimplementedError();
   }
@@ -33,7 +33,7 @@ class AgendamentoDAOImpl implements AgendamentoDAO {
     var sql;
     _db = await Conexao.getConexao();
     sql =
-    "INSERT INTO agendamento (id_usuario,id_tipo_agendamento,data_agendamento,descricao) values(?,?,?,?)";
+        "INSERT INTO agendamento (id_usuario,id_tipo_agendamento,data_agendamento,descricao) values(?,?,?,?)";
     await _db!.rawInsert(sql, [
       usuario.idUsuario,
       agendamento.tipoAgendamento,

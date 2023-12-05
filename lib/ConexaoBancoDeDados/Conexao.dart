@@ -15,6 +15,8 @@ class Conexao {
     if (_db == null) {
       Directory diretorio = await getApplicationDocumentsDirectory();
       String caminho = '${diretorio.path}/bancoColetaSeletiva.db';
+      //ignore: avoid_print
+      print(caminho);
       _db = await openDatabase(caminho, version: 1, singleInstance: true);
     }
     if (_db != null) {
